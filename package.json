@@ -23,7 +23,7 @@
   },
   "prettier": "@barelyhuman/prettier-config",
   "dependencies": {
-    "astring": "^0.7.1",
+    "astring": "^1.8.6",
     "xtend": "^4.0.1"
   },
   "devDependencies": {
@@ -33,6 +33,9 @@
     "bumpp": "^9.1.1",
     "prettier": "^3.0.1",
     "tap": "^16.3.8"
+  },
+  "peerDependencies": {
+    "astring": "^1.8.6"
   },
   "publishConfig": {
     "access": "public"

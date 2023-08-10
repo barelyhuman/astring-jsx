@@ -13,20 +13,20 @@ var ast = acorn.Parser.extend(jsx()).parse(text)
 
 tap.test('supports all JSX features', function (t) {
   t.plan(1)
-  var processed = astring(ast, { indent: '  ' })
+  var processed = astring.generate(ast, { indent: '  ' })
   t.matchSnapshot(processed)
 })
 tap.test('supports custom generator', function (t) {
   t.plan(1)
 
-  var generator = extend({}, astring.generator, {
+  var generator = extend({}, astring.GENERATOR, {
     ClassDeclaration: function ClassDeclaration(node, state) {
       t.equal(node.id.name, 'Test', 'should support custom generators')
-      astring.generator.ClassDeclaration(node, state)
+      astring.GENERATOR.ClassDeclaration(node, state)
     },
   })
 
-  var processed = astring(ast, {
+  var processed = astring.generate(ast, {
     generator: generator,
     indent: '  ',
   })
