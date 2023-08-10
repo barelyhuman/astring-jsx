@@ -2,21 +2,26 @@
   "name": "@barelyhuman/astring-jsx",
   "version": "1.0.2",
   "description": "astring, with JSX support",
-  "main": "index.js",
-  "scripts": {
-    "test": "tap test.js --functions=90",
-    "next": "bumpp",
-    "fix": "npx prettier --write ."
+  "homepage": "https://github.com/barelyhuman/astring-jsx#readme",
+  "bugs": {
+    "url": "https://github.com/barelyhuman/astring-jsx/issues"
   },
-  "prettier": "@barelyhuman/prettier-config",
-  "publishConfig": {
-    "access": "public"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barelyhuman/astring-jsx.git"
   },
+  "license": "MIT",
   "author": "Stephen Belanger <admin@stephenbelanger.com>",
   "contributors": [
     "reaper <ahoy@barelyhuman.dev>"
   ],
-  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "fix": "npx prettier --write .",
+    "next": "bumpp",
+    "test": "tap test.js --functions=90"
+  },
+  "prettier": "@barelyhuman/prettier-config",
   "dependencies": {
     "astring": "^0.7.1",
     "xtend": "^4.0.1"
@@ -29,12 +34,7 @@
     "prettier": "^3.0.1",
     "tap": "^16.3.8"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/barelyhuman/astring-jsx.git"
-  },
-  "bugs": {
-    "url": "https://github.com/barelyhuman/astring-jsx/issues"
-  },
-  "homepage": "https://github.com/barelyhuman/astring-jsx#readme"
+  "publishConfig": {
+    "access": "public"
+  }
 }
