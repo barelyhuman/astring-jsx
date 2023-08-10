@@ -4,7 +4,7 @@
   "description": "astring, with JSX support",
   "main": "index.js",
   "scripts": {
-    "test": "tap test.js",
+    "test": "tap test.js --functions=90",
     "next": "bumpp",
     "fix": "npx prettier --write ."
   },
