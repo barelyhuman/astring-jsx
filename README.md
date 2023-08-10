@@ -2,7 +2,7 @@
 
 > Note: This is a fork of the original project
 > [Qard/astring-jsx](https://github.com/Qard/astring-jsx),I plan to maintain it
-> moving forward as it's a dependent of the
+> moving forward as it's a dependency of the
 > [preact-island-plugins](https://github.com/barelyhuman/preact-island-plugins)
 > project
 
