@@ -86,6 +86,15 @@ var generator = Object.assign(
       var output = state.output
       output.write(node.value)
     },
+    // {...prop}
+    // {...prop.v}
+    // {...func()}
+    JSXSpreadAttribute: function JSXSpreadAttribute(node, state) {
+      var output = state.output
+      output.write(` {...`)
+      this[node.argument.type](node.argument, state)
+      output.write(`} `)
+    },
   },
   astring.defaultGenerator
 )
