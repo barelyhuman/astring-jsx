@@ -5,25 +5,23 @@ var generator = Object.assign(
   {
     // <div></div>
     JSXElement: function JSXElement(node, state) {
-      var output = state.output
-      output.write('<')
+      state.write('<')
       this[node.openingElement.type](node.openingElement, state)
       if (node.closingElement) {
-        output.write('>')
+        state.write('>')
         for (var i = 0; i < node.children.length; i++) {
           var child = node.children[i]
           this[child.type](child, state)
         }
-        output.write('</')
+        state.write('</')
         this[node.closingElement.type](node.closingElement, state)
-        output.write('>')
+        state.write('>')
       } else {
-        output.write(' />')
+        state.write(' />')
       }
     },
     // <div>
     JSXOpeningElement: function JSXOpeningElement(node, state) {
-      var output = state.output
       this[node.name.type](node.name, state)
       for (var i = 0; i < node.attributes.length; i++) {
         var attr = node.attributes[i]
@@ -32,50 +30,43 @@ var generator = Object.assign(
     },
     // </div>
     JSXClosingElement: function JSXOpeningElement(node, state) {
-      var output = state.output
       this[node.name.type](node.name, state)
     },
     // div
     JSXIdentifier: function JSXOpeningElement(node, state) {
-      var output = state.output
-      output.write(node.name)
+      state.write(node.name)
     },
     // Member.Expression
     JSXMemberExpression: function JSXMemberExpression(node, state) {
-      var output = state.output
       this[node.object.type](node.object, state)
-      output.write('.')
+      state.write('.')
       this[node.property.type](node.property, state)
     },
     // attr="something"
     JSXAttribute: function JSXAttribute(node, state) {
-      var output = state.output
-      output.write(' ')
+      state.write(' ')
       this[node.name.type](node.name, state)
-      output.write('=')
+      state.write('=')
       this[node.value.type](node.value, state)
     },
     // namespaced:attr="something"
     JSXNamespacedName: function JSXNamespacedName(node, state) {
-      var output = state.output
       this[node.namespace.type](node.namespace, state)
-      output.write(':')
+      state.write(':')
       this[node.name.type](node.name, state)
     },
     // {expression}
     JSXExpressionContainer: function JSXExpressionContainer(node, state) {
-      var output = state.output
-      output.write('{')
+      state.write('{')
       this[node.expression.type](node.expression, state)
-      output.write('}')
+      state.write('}')
     },
     JSXFragment: function JSXFragment(node, state) {
-      var output = state.output
-      output.write('<>')
+      state.write('<>')
       for (child of node.children) {
         this[child.type](child, state)
       }
-      output.write('</>')
+      state.write('</>')
     },
     // { }
     JSXEmptyExpression: function JSXEmptyExpression() {
@@ -83,33 +74,30 @@ var generator = Object.assign(
       // a single or multiline comment in the expression will be ignores
     },
     JSXText: function JSXText(node, state) {
-      var output = state.output
-      output.write(node.value)
+      state.write(node.value)
     },
     // {...prop}
     // {...prop.v}
     // {...func()}
     JSXSpreadAttribute: function JSXSpreadAttribute(node, state) {
-      var output = state.output
-      output.write(` {...`)
+      state.write(` {...`)
       this[node.argument.type](node.argument, state)
-      output.write(`} `)
+      state.write(`} `)
     },
   },
-  astring.defaultGenerator
+  astring.GENERATOR
 )
 
-function astringJsx(ast, options) {
-  return astring(
-    ast,
-    extend(
-      {
-        generator: generator,
-      },
-      options
-    )
-  )
+module.exports = {
+  GENERATOR: generator,
+  generate: (ast, options) =>
+    astring.generate(
+      ast,
+      extend(
+        {
+          generator: generator,
+        },
+        options
+      )
+    ),
 }
-
-astringJsx.generator = generator
-module.exports = astringJsx
