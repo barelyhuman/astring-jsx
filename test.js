@@ -1,24 +1,49 @@
-var acorn = require('acorn')
-var jsx = require('acorn-jsx')
-var assert = require('assert')
-var extend = require('xtend')
-var astring = require('./')
-var fs = require('fs')
+const acorn = require('acorn')
+const jsx = require('acorn-jsx')
+const extend = require('xtend')
+const astring = require('./')
+const fs = require('fs')
 
-var tap = require('tap')
+const tap = require('tap')
 
 // Load text and build AST
-var text = fs.readFileSync('sample.jsx').toString()
-var ast = acorn.Parser.extend(jsx()).parse(text)
 
-tap.test('supports all JSX features', function (t) {
+const parser = acorn.Parser.extend(jsx())
+
+tap.test('support empty fragments', function(t) {
+  t.plan(1);
+  const output = astring.generate(
+    parser.parse("<></>")
+  )
+  t.matchSnapshot(output)
+})
+
+tap.test('support text fragments', function(t) {
+  t.plan(1);
+  const output = astring.generate(
+    parser.parse("<>hello</>")
+  )
+  t.matchSnapshot(output)
+})
+
+tap.test('support jsx attibutes', function(t) {
+  t.plan(1);
+  const output = astring.generate(
+    parser.parse("<Counter a={1}/>")
+  )
+  t.matchSnapshot(output)
+})
+
+tap.test('basic JSX', function(t) {
   t.plan(1)
+  const text = fs.readFileSync('sample.jsx').toString()
+  const ast = parser.parse(text)
   var processed = astring.generate(ast, { indent: '  ' })
   t.matchSnapshot(processed)
 })
-tap.test('supports custom generator', function (t) {
-  t.plan(1)
 
+tap.test('supports custom generator', function(t) {
+  t.plan(1)
   var generator = extend({}, astring.GENERATOR, {
     ClassDeclaration: function ClassDeclaration(node, state) {
       t.equal(node.id.name, 'Test', 'should support custom generators')
@@ -26,7 +51,7 @@ tap.test('supports custom generator', function (t) {
     },
   })
 
-  var processed = astring.generate(ast, {
+  var processed = astring.generate(parser.parse(`class Test {}`), {
     generator: generator,
     indent: '  ',
   })

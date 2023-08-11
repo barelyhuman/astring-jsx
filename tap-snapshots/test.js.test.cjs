@@ -5,7 +5,7 @@
  * Make sure to inspect the output below.  Do not ignore changes!
  */
 'use strict'
-exports[`test.js TAP supports all JSX features > must match snapshot 1`] = `
+exports[`test.js TAP basic JSX > must match snapshot 1`] = `
 class Test {
   render() {
     const obj = {
@@ -27,5 +27,20 @@ class Test {
       </>;
   }
 }
+
+`
+
+exports[`test.js TAP support empty fragments > must match snapshot 1`] = `
+<></>;
+
+`
+
+exports[`test.js TAP support jsx attibutes > must match snapshot 1`] = `
+<Counter a={1} />;
+
+`
+
+exports[`test.js TAP support text fragments > must match snapshot 1`] = `
+<>hello</>;
 
 `
