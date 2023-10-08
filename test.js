@@ -10,31 +10,28 @@ const tap = require('tap')
 
 const parser = acorn.Parser.extend(jsx())
 
-tap.test('support empty fragments', function(t) {
-  t.plan(1);
-  const output = astring.generate(
-    parser.parse("<></>")
-  )
+tap.test('support empty fragments', function (t) {
+  t.plan(1)
+  const output = astring.generate(parser.parse('<></>'))
   t.matchSnapshot(output)
 })
 
-tap.test('support text fragments', function(t) {
-  t.plan(1);
-  const output = astring.generate(
-    parser.parse("<>hello</>")
-  )
+tap.test('support text fragments', function (t) {
+  t.plan(1)
+  const output = astring.generate(parser.parse('<>hello</>'))
   t.matchSnapshot(output)
 })
 
-tap.test('support jsx attibutes', function(t) {
-  t.plan(1);
-  const output = astring.generate(
-    parser.parse("<Counter a={1}/>")
-  )
+tap.test('support jsx attibutes', function (t) {
+  t.plan(2)
+  const output = astring.generate(parser.parse('<Counter a={1}/>'))
   t.matchSnapshot(output)
+
+  const output2 = astring.generate(parser.parse('<Counter a/>'))
+  t.matchSnapshot(output2)
 })
 
-tap.test('basic JSX', function(t) {
+tap.test('basic JSX', function (t) {
   t.plan(1)
   const text = fs.readFileSync('sample.jsx').toString()
   const ast = parser.parse(text)
@@ -42,7 +39,7 @@ tap.test('basic JSX', function(t) {
   t.matchSnapshot(processed)
 })
 
-tap.test('supports custom generator', function(t) {
+tap.test('supports custom generator', function (t) {
   t.plan(1)
   var generator = extend({}, astring.GENERATOR, {
     ClassDeclaration: function ClassDeclaration(node, state) {

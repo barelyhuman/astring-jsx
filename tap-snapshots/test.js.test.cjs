@@ -40,6 +40,11 @@ exports[`test.js TAP support jsx attibutes > must match snapshot 1`] = `
 
 `
 
+exports[`test.js TAP support jsx attibutes > must match snapshot 2`] = `
+<Counter a />;
+
+`
+
 exports[`test.js TAP support text fragments > must match snapshot 1`] = `
 <>hello</>;
 
