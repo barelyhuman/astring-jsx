@@ -12,14 +12,14 @@ exports[`basic JSX 1`] = `
       };
     };
     return <>
-        <div foo="bar" foo:bar={bux}>
-          This is a test.
-          <Test.Name.Foo />
-          {foo.map(() => "bar")}
-          <p>Text</p>
-          <div {...obj}  {...obj.a}  {...funcObj()}  />
-        </div>
-      </>;
+          <div foo="bar" foo:bar={bux}>
+            This is a test.
+            <Test.Name.Foo />
+            {foo.map(() => "bar")}
+            <p>Text</p>
+            <div {...obj}  {...obj.a}  {...funcObj()}  />
+          </div>
+        </>;
   }
 }
 "

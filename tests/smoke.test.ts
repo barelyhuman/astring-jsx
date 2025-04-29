@@ -4,6 +4,7 @@ import fs from "fs";
 import { test } from "vitest";
 import extend from "xtend";
 import astring from "../src/index";
+import { join } from "path";
 
 // Load text and build AST
 const parser = Parser.extend(jsx());
@@ -35,7 +36,8 @@ test("support jsx attibutes", function (t) {
 });
 
 test("basic JSX", function (t) {
-  const text = fs.readFileSync("sample.jsx").toString();
+  const sampleFile = join(__dirname,"./fixtures/sample.jsx")
+  const text = fs.readFileSync(sampleFile).toString();
   const ast = parser.parse(text, { ecmaVersion: 2020 });
   const processed = astring.generate(ast, { indent: "  " });
   t.expect(processed).toMatchSnapshot();
