@@ -12,6 +12,8 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: Deps
-        run: npm install
+        run: |
+          npm i -g pnpm@10.10.0
+          pnpm i --frozen-lockfile
       - name: Test
-        run: npm run test
+        run: pnpm test:ci

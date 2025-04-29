@@ -15,25 +15,48 @@
   "contributors": [
     "reaper <ahoy@barelyhuman.dev>"
   ],
-  "main": "index.js",
-  "types": "./index.d.ts",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": {
+        "import": "./dist/index.d.mts",
+        "default": "./dist/index.d.ts"
+      },
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
   "scripts": {
     "fix": "npx prettier --write .",
     "next": "bumpp",
-    "test": "tap test.js --functions=90"
+    "build": "tsup",
+    "test": "vitest ./tests/*",
+    "test:ci": "vitest run --coverage"
   },
   "prettier": "@barelyhuman/prettier-config",
   "dependencies": {
     "astring": "^1.8.6",
     "xtend": "^4.0.1"
   },
+  "files": [
+    "./src",
+    "./dist"
+  ],
   "devDependencies": {
+    "@barelyhuman/node-snapshot": "^1.0.2",
     "@barelyhuman/prettier-config": "^1.1.0",
+    "@types/node": "^20.17.32",
+    "@vitest/coverage-v8": "3.1.2",
     "acorn": "^8.10.0",
     "acorn-jsx": "^5.3.2",
     "bumpp": "^9.1.1",
     "prettier": "^3.0.1",
-    "tap": "^16.3.8"
+    "publint": "^0.3.12",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.2"
   },
   "peerDependencies": {
     "astring": "^1.8.6"
