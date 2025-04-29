@@ -16,6 +16,7 @@
     "reaper <ahoy@barelyhuman.dev>"
   ],
   "main": "index.js",
+  "types": "./index.d.ts",
   "scripts": {
     "fix": "npx prettier --write .",
     "next": "bumpp",
