@@ -1,6 +1,7 @@
-declare module '@barelyhuman/astring-jsx' {
-  import type { Node, Options, Writable } from 'astring'
+import type { Node, Options } from "astring";
+import type { Writable } from "stream";
 
-  export function generate(node: Node, options?: Options<null>): string
-  export function generate(node: Node, options?: Options<Writable>): Writable
-}
+export { baseGenerator, GENERATOR, Generator, Options, State } from "astring";
+
+export function generate(node: Node, options?: Options<null>): string;
+export function generate(node: Node, options?: Options<Writable>): Writable;
