@@ -1,5 +1,6 @@
 var astring = require('astring')
 var extend = require('xtend')
+const htmlEntities = require('html-entities');
 
 var generator = Object.assign(
   {
@@ -76,7 +77,7 @@ var generator = Object.assign(
       // a single or multiline comment in the expression will be ignores
     },
     JSXText: function JSXText(node, state) {
-      state.write(node.value)
+      state.write(htmlEntities.encode(node.value))
     },
     // {...prop}
     // {...prop.v}

@@ -25,7 +25,8 @@
   "prettier": "@barelyhuman/prettier-config",
   "dependencies": {
     "astring": "^1.8.6",
-    "xtend": "^4.0.1"
+    "xtend": "^4.0.1",
+    "html-entities": "^2.6.0"
   },
   "devDependencies": {
     "@barelyhuman/prettier-config": "^1.1.0",
