@@ -76,7 +76,14 @@ var generator = Object.assign(
       // a single or multiline comment in the expression will be ignores
     },
     JSXText: function JSXText(node, state) {
-      state.write(node.value)
+      // if the raw value contains html codes for various symbols, those are to be 
+      // left as is instead of being converted since they can make JSX invalid 
+      // specifically `<` and `>`. 
+      if (/&[a-zA-Z0-9]+;/.test(node.raw)) {
+        state.write(node.raw)  
+      } else {
+        state.write(node.value)
+      }
     },
     // {...prop}
     // {...prop.v}
