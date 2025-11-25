@@ -23,6 +23,13 @@ class Test {
           {foo.map(() => "bar")}
           <p>Text</p>
           <div {...obj}  {...obj.a}  {...funcObj()}  />
+          {}
+          <div>
+            <span>1&lt;2</span>
+            <span>1&copy;2</span>
+            <span>1&gt;2</span>
+            <span>1 & 2</span>
+          </div>
         </div>
       </>;
   }
