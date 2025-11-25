@@ -20,7 +20,8 @@
   "scripts": {
     "fix": "npx prettier --write .",
     "next": "bumpp",
-    "test": "tap test.js --functions=90"
+    "test": "node --test test.js",
+    "test:ci": "c8 --functions 90 -- node --test test.js"
   },
   "prettier": "@barelyhuman/prettier-config",
   "dependencies": {
@@ -28,12 +29,13 @@
     "xtend": "^4.0.1"
   },
   "devDependencies": {
+    "@barelyhuman/node-snapshot": "^1.0.2",
     "@barelyhuman/prettier-config": "^1.1.0",
     "acorn": "^8.10.0",
     "acorn-jsx": "^5.3.2",
     "bumpp": "^9.1.1",
-    "prettier": "^3.0.1",
-    "tap": "^16.3.8"
+    "c8": "^10.1.3",
+    "prettier": "^3.0.1"
   },
   "peerDependencies": {
     "astring": "^1.8.6"
